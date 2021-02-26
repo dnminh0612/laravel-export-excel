@@ -18,6 +18,10 @@
                     </div>
 
                     <div class="text-center my-5">
+                        <a href="{{ route('exportAccountsContactsTable') }}" class="btn btn-primary">Export Accounts Contacts table</a>
+                    </div>
+
+                    <div class="text-center my-5">
                         <a href="{{ route('exportLeadTable') }}" class="btn btn-primary">Export Lead table</a>
                     </div>
 

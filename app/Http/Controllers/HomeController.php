@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AccountsContactsExport;
 use App\Exports\AccountsExport;
 use App\Exports\EmailAddressExport;
 use App\Exports\LeadsExport;
@@ -19,12 +20,17 @@ class HomeController extends Controller
 
     public function exportEmailAddress()
     {
-        return Excel::download(new EmailAddressExport(), 'email-address-'.Carbon::now()->format('d-m-Y').'.xlsx');
+        return Excel::download((new EmailAddressExport()), 'email-address-'.Carbon::now()->format('d-m-Y').'.xlsx');
     }
 
     public function exportAccount()
     {
         return Excel::download(new AccountsExport(), 'accounts-'.Carbon::now()->format('d-m-Y').'.xlsx');
+    }
+
+    public function exportAccountContact()
+    {
+        return Excel::download(new AccountsContactsExport(), 'accounts-contacts-'.Carbon::now()->format('d-m-Y').'.xlsx');
     }
 
     public function exportLead()
