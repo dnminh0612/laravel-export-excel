@@ -9,8 +9,16 @@
 
                 <div class="card-body">
 
-                    <div class="text-center">
+                    <div class="text-center my-5">
                         <a href="{{ route('exportUsersTable') }}" class="btn btn-primary">Export User table</a>
+                    </div>
+
+                    <div class="text-center my-5">
+                        <a href="{{ route('exportAccountTable') }}" class="btn btn-primary">Export Account table</a>
+                    </div>
+
+                    <div class="text-center my-5">
+                        <a href="{{ route('exportLeadTable') }}" class="btn btn-primary">Export Lead table</a>
                     </div>
 
                 </div>
