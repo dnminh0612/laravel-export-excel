@@ -10,7 +10,7 @@
                 <div class="card-body">
 
                     <div class="text-center my-5">
-                        <a href="{{ route('exportUsersTable') }}" class="btn btn-primary">Export User table</a>
+                        <a href="{{ route('exportEmailAddressTable') }}" class="btn btn-primary">Export EmailAddress table</a>
                     </div>
 
                     <div class="text-center my-5">

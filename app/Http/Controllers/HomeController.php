@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Exports\AccountsExport;
+use App\Exports\EmailAddressExport;
 use App\Exports\LeadsExport;
 use App\Exports\UsersExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -15,18 +17,18 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function exportUser()
+    public function exportEmailAddress()
     {
-        return Excel::download(new UsersExport(), 'users.xlsx');
+        return Excel::download(new EmailAddressExport(), 'email-address-'.Carbon::now()->format('d-m-Y').'.xlsx');
     }
 
     public function exportAccount()
     {
-        return Excel::download(new AccountsExport(), 'accounts.xlsx');
+        return Excel::download(new AccountsExport(), 'accounts-'.Carbon::now()->format('d-m-Y').'.xlsx');
     }
 
     public function exportLead()
     {
-        return Excel::download(new LeadsExport(), 'leads.xlsx');
+        return Excel::download(new LeadsExport(), 'leads-'.Carbon::now()->format('d-m-Y').'.xlsx');
     }
 }

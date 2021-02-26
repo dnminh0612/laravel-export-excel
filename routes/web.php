@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('export-users-table', [HomeController::class, 'exportUser'])->name('exportUsersTable');
+Route::get('export-email-address-table', [HomeController::class, 'exportEmailAddress'])->name('exportEmailAddressTable');
 Route::get('export-accounts-table', [HomeController::class, 'exportAccount'])->name('exportAccountTable');
 Route::get('export-leads-table', [HomeController::class, 'exportLead'])->name('exportLeadTable');
 
