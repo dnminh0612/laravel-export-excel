@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">{{ __('Export data') }}</div>
 
                     <div class="card-body">
                         @if(isset($tables))
@@ -13,15 +13,16 @@
                                 @csrf
                                 <div class="my-5">
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-12 col-md-8">
+                                            <label for="tables">Select table</label>
                                             <select id="tables" name="table_name" class="custom-select">
                                                 @foreach($tables as $key => $table)
                                                     <option value="{{ $table }}">{{ $table }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-4">
-                                            <button type="submit" class="btn btn-primary">Export</button>
+                                        <div class="col-12 col-md-4 mt-3 mt-md-0 d-flex align-items-end">
+                                            <button type="submit" class="btn btn-primary btn-block">Export</button>
                                         </div>
                                     </div>
                                 </div>
