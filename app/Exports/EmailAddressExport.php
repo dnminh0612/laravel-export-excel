@@ -2,6 +2,7 @@
 namespace App\Exports;
 
 use App\Models\EmailAddress;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -11,7 +12,7 @@ class EmailAddressExport implements FromCollection, WithProperties, WithHeadings
 {
     public function collection()
     {
-        return EmailAddress::all();
+        return DB::table('email_addresses')->get();
     }
     public function properties(): array
     {
@@ -20,7 +21,8 @@ class EmailAddressExport implements FromCollection, WithProperties, WithHeadings
     }
     public function headings(): array
     {
-        $item = EmailAddress::first();
-        return array_keys($item->getAttributes());
+        $item = DB::table('email_addresses')->first();
+        $array = json_decode(json_encode($item), true);
+        return array_keys($array);
     }
 }
