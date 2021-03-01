@@ -6,35 +6,28 @@ use App\Exports\AccountsContactsExport;
 use App\Exports\AccountsExport;
 use App\Exports\EmailAddressExport;
 use App\Exports\LeadsExport;
+use App\Exports\TablesExport;
 use App\Exports\UsersExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $data['tables'] = array_map('reset', \DB::select('SHOW TABLES'));
+        return view('home', $data);
     }
 
-    public function exportEmailAddress()
+    public function export(Request $request)
     {
-        return Excel::download((new EmailAddressExport()), 'email-address-'.Carbon::now()->format('d-m-Y').'.xlsx');
-    }
-
-    public function exportAccount()
-    {
-        return Excel::download(new AccountsExport(), 'accounts-'.Carbon::now()->format('d-m-Y').'.xlsx');
-    }
-
-    public function exportAccountContact()
-    {
-        return Excel::download(new AccountsContactsExport(), 'accounts-contacts-'.Carbon::now()->format('d-m-Y').'.xlsx');
-    }
-
-    public function exportLead()
-    {
-        return Excel::download(new LeadsExport(), 'leads-'.Carbon::now()->format('d-m-Y').'.xlsx');
+        if ($request->table_name) {
+            $table_name = $request->table_name;
+            return Excel::download((new TablesExport($table_name)), $table_name . '-' . Carbon::now()->format('d-m-Y h:i:s') . '.xlsx');
+        } else {
+            return redirect()->route('home');
+        }
     }
 }
